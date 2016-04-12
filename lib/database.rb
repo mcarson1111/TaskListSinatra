@@ -46,7 +46,7 @@ module TaskList
 
     def all_tasks
       query = <<-QUERY
-        SELECT title
+        SELECT *
         FROM task_list;
       QUERY
 
