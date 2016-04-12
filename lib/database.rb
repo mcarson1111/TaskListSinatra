@@ -58,6 +58,6 @@ module TaskList
 
 end
 
-new_task = TaskList::Task.new
-
-new_task.insert!({title: "Clean house", description: "Clean the house" , added_at: "2016", completed_at: ""})
+# new_task = TaskList::Task.new
+#
+# new_task.insert!({"title" => "Clean house", "description"=> "Clean the house" , "added_at"=> "2016", "completed_at"=> ""})
