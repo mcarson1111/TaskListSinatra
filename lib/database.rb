@@ -14,7 +14,7 @@ module TaskList
         CREATE TABLE  task_list (
           id INTEGER PRIMARY KEY,
           title TEXT NOT NULL,
-          descirption TEXT NOT NULL,
+          description TEXT,
           added_at TEXT,
           completed_at TEXT
         );
@@ -33,9 +33,9 @@ module TaskList
 
       insert_statement = <<-INSERTSTATEMENT
         INSERT INTO task_list (
-          title, descirption, added_at, completed_at
+          title, description, added_at, completed_at
         ) VALUES (
-          :title, :descirption, :added_at, :completed_at
+          :title, :description, :added_at, :completed_at
           );
       INSERTSTATEMENT
 
@@ -44,13 +44,13 @@ module TaskList
 
     end
 
-    def any_query
+    def all_tasks
       query = <<-QUERY
-        SELECT description
+        SELECT title
         FROM task_list;
       QUERY
 
-      what_we_want = db.execute(query)
+      all_tasks = db.execute(query)
 
     end
 
@@ -60,4 +60,4 @@ end
 
 new_task = TaskList::Task.new
 
-new_task.insert!({title: "Clean house", descirption: "Clean the house" , added_at: "2016" , completed_at: "2016" })
+new_task.insert!({title: "Clean house", description: "Clean the house" , added_at: "2016", completed_at: ""})
