@@ -15,8 +15,7 @@ For the baseline you will need to create the following project files:
 
 - A __Gemfile__ with all of the gems necessary for Sinatra, SQLite, and anything else you want to use (pry, rerun, etc).
 - A Sinatra class for your routes, and a root route (`/`).
-- An `index.erb` and a `layour.erb` for your site's root route.
-- A __config.ru__ file that runs your Sinatra class; look at the structure in the SinatraSite project for an example.
+- An `index.erb` and a `layout.erb` for your site's root route.
 
 Additionally you will need to do the following to design and create your database:
 
@@ -29,7 +28,7 @@ $ git clone <SSH URL>
 $ cd TaskListSinatra
 $ bundle
 $ ruby create_schema.rb
-$ rerun 'rackup'
+$ rerun 'ruby tasklist.rb'
 ```
 
 ## Primary Requirements
