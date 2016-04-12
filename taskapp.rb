@@ -18,8 +18,8 @@ class MyApp < Sinatra::Base
     @task_list_database = TaskList::Task.new
     @task_list_database.insert!(@tasks)
 
-
-    erb :new_task
+    # rereoute?
+    erb :index
   end
 
 run!
