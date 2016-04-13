@@ -54,6 +54,28 @@ module TaskList
 
     end
 
+    def all_incomplete_tasks
+      query = <<-QUERY
+        SELECT *
+        FROM task_list
+        WHERE completed_at = "";
+      QUERY
+
+      all_incomplete_tasks = db.execute(query)
+
+    end
+
+    def update_completion_time(completed, task_id)
+      query = <<-QUERY
+        UPDATE task_list
+        SET completed_at = ?
+        WHERE id = ?;
+      QUERY
+
+      db.execute(query, completed, task_id)
+
+    end
+
   end
 
 end

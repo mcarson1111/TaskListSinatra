@@ -14,13 +14,13 @@
 
 <main>
 
-  current_params: <%= @params %><br>
+  <!-- current_params: <%= @params %><br> -->
   <!-- tasks: <%= @tasks %><br> -->
 
 
-<div class="params">
+<!-- <div class="params">
   <%= params %>
-</div>
+</div> -->
 
 
     <form action="" method="post" accept-charset="utf-8">
@@ -29,8 +29,8 @@
 
           <label>Task:<input type="text" name="tasks[title]" value=""></label>
           <label>Description:<input type="text" name="tasks[description]" value=""></label>
-          <label>Added Date:<input type="text" name="tasks[added_at]" value=""></label>
-          <label>Completed Date:<input type="text" name="tasks[completed_at]" value=""></label>
+          <label><input type="hidden" name="tasks[added_at]" value=""></label>
+          <label><input type="hidden" name="tasks[completed_at]" value=""></label>
 
       </fieldset>
 
