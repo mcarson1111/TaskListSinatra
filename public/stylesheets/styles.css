@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+  z-index: 0;
+}
 body {
   background-color: teal;
   color: white;
@@ -36,21 +40,32 @@ a:hover {
 
 }
 
-div {
+.task-tile, .cover-tile {
   align-items: center;
   display: inline-block;
   width: 10rem;
   height: 10rem;
   border-color: white;
-  border-width: thin;
+  border-width: thick;
   border-style: solid;
   margin: 4rem;
+  border-radius: 1rem;
 }
 
-fieldset {
-  height: 8rem;
+.task-tile {
+  z-index: 0;
+
+}
+.cover-tile {
+  visibility: hidden;
+  z-index: 1;
 }
 
-input {
-  margin: 2.5vrem;
+.cover-tiles:hover {
+  visibility: visible;
+}
+
+label {
+  /*nice and big so it is easy to click into!*/
+  padding: 2.5rem;
 }

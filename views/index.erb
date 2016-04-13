@@ -1,7 +1,7 @@
 <% tasks_to_do = @task_list_database.all_incomplete_tasks %>
 
 <% tasks_to_do.each do |task| %>
-  <div>
+  <div class="task-tile">
     <h2>
         <%#Task Title%>
       <%= task[1] %>
@@ -16,7 +16,8 @@
         <%# need to associate the id so we know which record to update -this is in index[0] %>
       <input type="hidden" name=completed[] value="<%=task[0]%>">
         <%# if a completed button gets checked, we will add the date/time as part of the post method in taskapp.rb %>
-      <input type="submit" value = "Completed!">
+      <input class="cover-tile" type="submit" value = "Completed!">
+              <%# thing to think about with css styling... wouldn't it be cool if I could toggle between mark as completed and mark as deleted? so tiles would get a BIG X or CHECK and these would correspond to the buttons! %>
     </form>
   </div>
 <% end %>
