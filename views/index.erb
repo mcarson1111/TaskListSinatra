@@ -1,5 +1,3 @@
-
-
 <header>
   <h1> To Do List </h1>
 </header>
@@ -14,31 +12,28 @@
 
 
 <main>
-  <!-- <%= params %> -->
 
   <% tasks_to_do = @task_list_database.all_incomplete_tasks %>
-
 
     <% tasks_to_do.each do |task| %>
       <div>
         <h2>
+            <%#Task Title%>
           <%= task[1] %>
         </h2>
+
         <p>
+            <%#Task Description%>
           <%= task[2] %>
         </p>
 
         <form action="" method="post">
-          <!-- <input type="button" onlick = "post" name="completed" value="true">Completed -->
-          <input type="hidden" name=completed[] value="">
+            <%# need to associate the id so we know which record to update - this is in index[0] %>
           <input type="hidden" name=completed[] value="<%=task[0]%>">
+            <%# if a completed button gets checked, we will add the date/time as part of the post method in taskapp.rb %>
           <input type="submit" value = "Completed!">
-
-          <!-- <input type="submit" value="Ok"> -->
         </form>
       </div>
     <% end %>
-
-
 
 </main>

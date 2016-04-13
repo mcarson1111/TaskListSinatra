@@ -55,6 +55,8 @@ module TaskList
     end
 
     def all_incomplete_tasks
+      # before a task is complete, it does NOT have a time stamp.  So, look for taks where complete = ""
+
       query = <<-QUERY
         SELECT *
         FROM task_list
@@ -65,21 +67,17 @@ module TaskList
 
     end
 
-    def update_completion_time(completed, task_id)
+    def update_completion_time(task_id, completed_time)
       query = <<-QUERY
         UPDATE task_list
         SET completed_at = ?
         WHERE id = ?;
       QUERY
 
-      db.execute(query, completed, task_id)
+      db.execute(query, completed_time, task_id)
 
     end
 
   end
 
 end
-
-# new_task = TaskList::Task.new
-#
-# new_task.insert!({"title" => "Clean house", "description"=> "Clean the house" , "added_at"=> "2016", "completed_at"=> ""})
