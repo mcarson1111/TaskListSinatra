@@ -1,39 +1,22 @@
-<header>
-  <h1> To Do List </h1>
-</header>
+<% tasks_to_do = @task_list_database.all_incomplete_tasks %>
 
-<nav>
-    <ul>
-      <li><a href='/'>Home</a></li>
+<% tasks_to_do.each do |task| %>
+  <div>
+    <h2>
+        <%#Task Title%>
+      <%= task[1] %>
+    </h2>
 
-      <li><a href='/new-task'>Add a New Task!</a></li>
-    </ul>
-</nav>
+    <p>
+        <%#Task Description%>
+      <%= task[2] %>
+    </p>
 
-
-<main>
-
-  <% tasks_to_do = @task_list_database.all_incomplete_tasks %>
-
-    <% tasks_to_do.each do |task| %>
-      <div>
-        <h2>
-            <%#Task Title%>
-          <%= task[1] %>
-        </h2>
-
-        <p>
-            <%#Task Description%>
-          <%= task[2] %>
-        </p>
-
-        <form action="" method="post">
-            <%# need to associate the id so we know which record to update - this is in index[0] %>
-          <input type="hidden" name=completed[] value="<%=task[0]%>">
-            <%# if a completed button gets checked, we will add the date/time as part of the post method in taskapp.rb %>
-          <input type="submit" value = "Completed!">
-        </form>
-      </div>
-    <% end %>
-
-</main>
+    <form action="" method="post">
+        <%# need to associate the id so we know which record to update -this is in index[0] %>
+      <input type="hidden" name=completed[] value="<%=task[0]%>">
+        <%# if a completed button gets checked, we will add the date/time as part of the post method in taskapp.rb %>
+      <input type="submit" value = "Completed!">
+    </form>
+  </div>
+<% end %>

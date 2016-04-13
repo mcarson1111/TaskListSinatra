@@ -3,13 +3,24 @@
   <head>
     <title>Task List</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css"
-    href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
   </head>
 
   <body>
+    <header>
+      <h1> TO DO LIST </h1>
+      <nav>
+          <ul>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/new-task'>Add a New Task!</a></li>
+          </ul>
+      </nav>
+    </header>
 
-  <%=yield%>
+    <main>
+      <%=yield%>
+
+    </main>
 
   </body>
 
