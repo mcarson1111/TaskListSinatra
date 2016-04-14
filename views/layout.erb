@@ -9,15 +9,16 @@
   <body>
     <header>
       <h1> TO DO LIST </h1>
-      <nav>
-      <ul>
-        <li><a href='/'>Home</a></li>
-        <li><a href='/new-task'>Add a New Task!</a></li>
-      </ul>
-  </nav>
     </header>
 
     <main>
+      <%# in main so nav can use flex styling %>
+      <div class="navigation">
+        <nav>
+          <a href='/'>Home</a>
+          <a href='/new-task'>New Task!</a>
+        </nav>
+      </div>
       <%=yield%>
 
     </main>

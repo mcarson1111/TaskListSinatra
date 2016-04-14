@@ -3,41 +3,43 @@ html {
   font-family: monospace;
   z-index: 0;
 }
+
 body {
   background-color: #252839;
   color: #b5b5b7;
   text-align: center;
 }
 
-nav {
-  background-color: #677077;
-  width: 100%;
-  height: 5rem;
-}
-
 main {
   display: flex;
-  /*put most recently added tasks on top*/
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-li {
-  display: inline-block;
-  padding: 17px;
-  margin: 1rem 5rem;
+.navigation {
+  background-color: #677077;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-a {
+nav {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav > a {
   text-decoration: none;
-}
-
-li a {
-  text-align: center;
-  font-size: 24px;
+  font-size: 2rem;
   color: #b5b5b7;
   text-decoration: none;
+  margin: 0 2rem;
 }
 
 h1 {
@@ -47,7 +49,7 @@ h1 {
 }
 
 h2 {
-  margin: 0;
+  margin: 1rem;
 }
 
 p {
@@ -56,11 +58,11 @@ p {
   margin: 0;
 }
 
-
 a:hover {
   color:#f2b632;
 }
 
+/*get user input with graphics and text for what they want to do to task list*/
 input[type="radio"] {
   display: none;
 }
@@ -77,15 +79,15 @@ input[type="radio"] {
 }
 
 .mark-complete {
-  background-image: url('../images/interface.png');
+  background-image: url('../images/interface2.png');
 }
 
 .remove-task {
-  background-image: url('../images/circlex.png');
+  background-image: url('../images/circlex2.png');
 }
 
 .add-task {
-  background-image: url('../images/pen.png');
+  background-image: url('../images/pen2.png');
 }
 
 .mark-complete:hover, .remove-task:hover, .add-task:hover {
@@ -94,7 +96,7 @@ input[type="radio"] {
 
 .text {
   visibility: hidden;
-  color: white;
+  color: #f2b632;
   font-weight: bold;
   align-self: center;
   margin-top: 2rem;
@@ -108,65 +110,12 @@ input[type="radio"] {
 
 .user-choice {
   display: flex;
-  /*display newest additions first!*/
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.task-entry {
-  width: 75%;
-  margin: auto;
-}
-
-.task-entry fieldset {
-  border-radius: 1rem;
-  border-color: white;
-  border-width: thick;
-  border-style: solid;
-  border-color: #f2b632;
-  padding-bottom: 1rem;
-}
-
-.task-entry legend {
-  font-size: 2rem;
-  padding: 0 2rem;
-  text-align: center;
-}
-
-.task-entry label {
-  /*nice and big so it is easy to click into!*/
-  padding: 1rem;
-  display: inline;
-}
-
-.task-entry input{
-  margin: 1rem;
-  padding: .5rem;
-  border-radius: .5rem;
-}
-
-.task-entry .add-task {
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-image: url( '../images/circle+.png' );
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: .4;
-  width: 2.5rem;
-  height: 2.5rem;
-  transition: .2s ease;
-  cursor: pointer;
-}
-
-.task-entry .add-task:hover {
-  opacity: 1;
-}
-
-.task-entry .add-task:focus {
-  opacity: 1;
-}
-
+/*display tasks as tiles*/
 .task-tile, .cover-tile {
   width: 10rem;
   height: 10rem;
@@ -190,37 +139,95 @@ input[type="radio"] {
   border-style: solid;
 }
 
-/*.to-do .task-tile {
-  border-color: ;
-}*/
-
 .overlay {
   /*takes out of the flow so text appears beneath*/
   position: absolute;
 }
+
+/*display image/action icon on hover... uses a big button*/
 .cover-tile {
-  /*get rid of yucky grey*/
   background-color: rgba(255, 255, 255, 0);
   border: none;
   z-index: 1;
   transition: .2s ease;
   cursor: pointer;
-}
-
-.already-complete {
-  background-image: url( '../images/completed.png' );
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
 }
 
 .complete:hover {
-  background-image: url( '../images/completed.png' );
+  background-image: url( '../images/completed2.png' );
 }
 
 .remove:hover {
-  background-image: url( '../images/circlex.png' );
+  background-image: url( '../images/remove.png' );
 }
 
-.cover-tile {
+/*completed task list*/
+.done {
+  /*display tasks that are completed as darker*/
+  opacity: .3
+}
+
+.already-complete {
+  background-image: url( '../images/completed2.png' );
+}
+
+/*user inputs title of task and description*/
+.task-entry {
+  width: 75%;
+  margin: auto;
+}
+
+.task-entry fieldset {
+  border-radius: 1rem;
+  border-color: white;
+  border-width: thick;
+  border-style: solid;
+  border-color: #f2b632;
+  padding-bottom: 1rem;
+  margin: 1rem;
+}
+
+.task-entry legend {
+  font-size: 2rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.task-entry label {
+  /*nice and big so it is easy to click into!*/
+  padding: .75rem .75rem .25rem .75rem;
+  font-size: 1.25rem;
+  display: inline-block;
+  width: 21rem;
+  font-weight: bold;
+}
+
+.task-entry input{
+  margin: .5rem 1rem;
+  padding: .5rem;
+  border-radius: .5rem;
+  border-style: none;
+  width: 20rem;
+  background-color: #b5b5b7;
+}
+
+.task-entry .add-task {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url( '../images/circle+2.png' );
   background-repeat: no-repeat;
   background-size: contain;
+  opacity: .4;
+  width: 3.5rem;
+  height: 2.5rem;
+  padding: 2.75rem .5rem 1.75rem .5rem;
+  transition: .2s ease;
+  cursor: pointer;
+}
+
+.task-entry .add-task:hover, .task-entry .add-task:focus {
   opacity: 1;
 }

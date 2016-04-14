@@ -53,9 +53,9 @@
 <% end %>
 </div>
 
-<h2>Great job! You've finished these tasks: </h2>
+<h2 class="done">Great job! You've finished these tasks: </h2>
 
-<div class="list-tasks">
+<div class="done list-tasks">
 <% complete_tasks = @task_list_database.all_complete_tasks %>
 
 <% complete_tasks.each do |task| %>
