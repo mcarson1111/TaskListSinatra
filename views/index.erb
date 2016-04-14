@@ -1,23 +1,43 @@
 
+<div class="user-choice">
+<h2>What would you like to do?</h2>  
 
+
+<form action="" method="put">
+  <input type="radio" name="edit_tasks_list"  onclick="this.form.submit()" value="mark_completed"> Mark Completed<br>
+  <input type="radio" name="edit_tasks_list"  onclick="this.form.submit()" value="remove_task"> Remove Task<br>
+</form>
+</div>
+
+<div class="list-tasks">
 
 <% tasks_to_do = @task_list_database.all_incomplete_tasks %>
+<% @edit_tasks_list = params["edit_tasks_list"] %>
 
 <% tasks_to_do.each do |task| %>
-  <div class="task-tile">
-    <form action="" method="post" class="overlay">
-        <%# need to associate the id so we know which record to update -this is in index[0] %>
-      <input type="hidden" name=completed[] value="<%=task[0]%>">
-        <%# if a completed button gets checked, we will add the date/time as part of the post method in taskapp.rb %>
-      <input class="complete cover-tile" type="submit" value = "">
-        <!-- no value because I wanted to use a picture instead -->
-              <%# thing to think about with css styling... wouldn't it be cool if I could toggle between mark as completed and mark as deleted? so tiles would get a BIG X or CHECK and these would correspond to the buttons! %>
-    </form>
+  <div class="to-do task-tile">
+    <% if !@edit_tasks_list.nil? %>
+    <%# when edit_task_list is NOT nil, the user has input if they want to complete or delete so we can give them the buttons! %>
+      <form action="" method="post" class="overlay">
+      <% if @edit_tasks_list == "mark_completed" %>
+          <%# need to associate the id so we know which record  to update -this is in index[0] %>
+          <input type="hidden" name="completed[]" value="<%=  task[0] %>">
+          <%# if a completed button gets checked, we will add   the date/time as part of the post method in   taskapp.rb %>
+          <input class="complete cover-tile" type="submit"  value = "">
+      <% else %>
+        <input type="hidden" name="removed[]" value="<%=  task[0] %>">
+        <input type="hidden" name="removed[]" value="true">
+        <input class="remove cover-tile" type="submit"  value = "">
 
-    <h2>
+      <% end %>
+
+    </form>
+    <% end %>
+
+    <h3>
         <%#Task Title%>
       <%= task[1] %>
-    </h2>
+    </h3>
 
     <p>
         <%#Task Description%>
@@ -26,3 +46,28 @@
 
   </div>
 <% end %>
+</div>
+
+<h2>Great job! You've finished these tasks: </h2>
+
+<div class="list-tasks">
+<% complete_tasks = @task_list_database.all_complete_tasks %>
+
+<% complete_tasks.each do |task| %>
+  <div class="task-tile">
+      <div action="" method="post" class="overlay already-complete cover-tile">
+      </div>
+
+    <h4>
+        <%#Task Title%>
+      <%= task[1] %>
+    </h4>
+
+    <p>
+        <%#Task Description%>
+      <%= task[2] %>
+    </p>
+
+  </div>
+<% end %>
+</div>

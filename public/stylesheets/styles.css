@@ -18,8 +18,8 @@ nav {
 main {
   display: flex;
   /*put most recently added tasks on top*/
-  flex-direction: row-reverse;
-  flex-wrap: wrap-reverse;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -117,6 +117,14 @@ a:hover {
   height: 10rem;
 }
 
+.list-tasks {
+  display: flex;
+  /*display newest additions first!*/
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .task-tile {
   z-index: 0;
   align-items: center;
@@ -125,8 +133,11 @@ a:hover {
   border-color: #f2b632;
   border-width: thick;
   border-style: solid;
-
 }
+
+/*.to-do .task-tile {
+  border-color: ;
+}*/
 
 .overlay {
   /*takes out of the flow so text appears beneath*/
@@ -141,11 +152,19 @@ a:hover {
   cursor: pointer;
 }
 
+.already-complete {
+  background-image: url( '../images/completed.png' );
+}
+
 .complete:hover {
   background-image: url( '../images/completed.png' );
 }
 
-.cover-tile:hover {
+.remove:hover {
+  background-image: url( '../images/remove.png' );
+}
+
+.cover-tile {
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 1;
