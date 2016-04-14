@@ -29,6 +29,10 @@ li {
   margin: 1rem 5rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 li a {
   text-align: center;
   font-size: 24px;
@@ -56,6 +60,60 @@ p {
 a:hover {
   color:#f2b632;
 }
+
+input[type="radio"] {
+  display: none;
+}
+
+.mark-complete, .remove-task, .add-task {
+  height: 5rem;
+  width: 5rem;
+  margin: 2rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mark-complete {
+  background-image: url('../images/interface.png');
+}
+
+.remove-task {
+  background-image: url('../images/circlex.png');
+}
+
+.add-task {
+  background-image: url('../images/pen.png');
+}
+
+.mark-complete:hover, .remove-task:hover, .add-task:hover {
+  background-image: none;
+}
+
+.text {
+  visibility: hidden;
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 2rem;
+  display: inline-block;
+}
+
+.mark-complete:hover .text, .remove-task:hover .text, .add-task:hover .text {
+  visibility: visible;
+  align-self: center;
+}
+
+.user-choice {
+  display: flex;
+  /*display newest additions first!*/
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .task-entry {
   width: 75%;
   margin: auto;
@@ -86,13 +144,12 @@ a:hover {
   margin: 1rem;
   padding: .5rem;
   border-radius: .5rem;
-
 }
 
 .task-entry .add-task {
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url( '../images/add.png' );
+  background-image: url( '../images/circle+.png' );
   background-repeat: no-repeat;
   background-size: contain;
   opacity: .4;
@@ -109,8 +166,6 @@ a:hover {
 .task-entry .add-task:focus {
   opacity: 1;
 }
-
-
 
 .task-tile, .cover-tile {
   width: 10rem;
@@ -161,7 +216,7 @@ a:hover {
 }
 
 .remove:hover {
-  background-image: url( '../images/remove.png' );
+  background-image: url( '../images/circlex.png' );
 }
 
 .cover-tile {

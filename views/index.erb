@@ -1,12 +1,17 @@
 
+<h2>What would you like to do with your tasks?</h2>
+
 <div class="user-choice">
-<h2>What would you like to do?</h2>  
+  <form action="" method="put">
+
+      <label class="mark-complete"><span  class="text">Complete</span><input type="radio"   name="edit_tasks_list"  onclick="this.form.submit()"  value="mark_completed" alt="Mark tasks complete"></label>
 
 
-<form action="" method="put">
-  <input type="radio" name="edit_tasks_list"  onclick="this.form.submit()" value="mark_completed"> Mark Completed<br>
-  <input type="radio" name="edit_tasks_list"  onclick="this.form.submit()" value="remove_task"> Remove Task<br>
-</form>
+
+      <label class="remove-task"><span  class="text">Remove</span><input type="radio"   name="edit_tasks_list"  onclick="this.form.submit()"  value="remove_task" value="remove_task" alt="Remove   tasks"></label>
+
+  </form>
+  <a class="add-task" href='/new-task' alt="Add a new task"><span class="text">Add</span></a>
 </div>
 
 <div class="list-tasks">
