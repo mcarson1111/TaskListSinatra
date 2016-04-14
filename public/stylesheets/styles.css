@@ -29,11 +29,14 @@ li a {
 h1 {
   font-size: 4rem;
   margin-bottom: .5rem;
+  z-index: 0;
 }
 
 p {
   font-size: 1rem;
+  z-index: 0;
 }
+
 
 a:hover {
   color:#b38600;
@@ -41,29 +44,46 @@ a:hover {
 }
 
 .task-tile, .cover-tile {
-  align-items: center;
-  display: inline-block;
   width: 10rem;
   height: 10rem;
-  border-color: white;
-  border-width: thick;
-  border-style: solid;
-  margin: 4rem;
-  border-radius: 1rem;
 }
 
 .task-tile {
   z-index: 0;
+  align-items: center;
+  display: inline-block;
+  margin: 4rem;
+  border-radius: 1rem;
+  border-color: white;
+  border-width: thick;
+  border-style: solid;
 
+}
+
+.overlay {
+  /*takes out of the flow so text appears beneath*/
+  position: absolute;
 }
 .cover-tile {
-  visibility: hidden;
+  /*get rid of yucky grey*/
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
   z-index: 1;
+  transition: .2s ease;
 }
 
-.cover-tiles:hover {
-  visibility: visible;
+.complete:hover {
+  background-image: url( '../images/completed.png' );
 }
+
+.cover-tile:hover {
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+}
+
+
 
 label {
   /*nice and big so it is easy to click into!*/
