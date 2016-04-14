@@ -4,13 +4,13 @@ html {
   z-index: 0;
 }
 body {
-  background-color: teal;
-  color: white;
+  background-color: #252839;
+  color: #b5b5b7;
   text-align: center;
 }
 
 nav {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #677077;
   width: 100%;
   height: 5rem;
 }
@@ -32,7 +32,8 @@ li {
 li a {
   text-align: center;
   font-size: 24px;
-  color: #ffffff;
+  color: #b5b5b7;
+  text-decoration: none;
 }
 
 h1 {
@@ -53,7 +54,7 @@ p {
 
 
 a:hover {
-  color:#b38600;
+  color:#f2b632;
 }
 .task-entry {
   width: 75%;
@@ -65,6 +66,7 @@ a:hover {
   border-color: white;
   border-width: thick;
   border-style: solid;
+  border-color: #f2b632;
   padding-bottom: 1rem;
 }
 
@@ -97,9 +99,14 @@ a:hover {
   width: 2.5rem;
   height: 2.5rem;
   transition: .2s ease;
+  cursor: pointer;
 }
 
 .task-entry .add-task:hover {
+  opacity: 1;
+}
+
+.task-entry .add-task:focus {
   opacity: 1;
 }
 
@@ -115,7 +122,7 @@ a:hover {
   align-items: center;
   margin: 4rem;
   border-radius: 1rem;
-  border-color: white;
+  border-color: #f2b632;
   border-width: thick;
   border-style: solid;
 
@@ -131,6 +138,7 @@ a:hover {
   border: none;
   z-index: 1;
   transition: .2s ease;
+  cursor: pointer;
 }
 
 .complete:hover {
