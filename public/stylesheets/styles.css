@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  font-family: monospace;
   z-index: 0;
 }
 body {
@@ -12,6 +13,14 @@ nav {
   background-color: rgba(255, 255, 255, 0.3);
   width: 100%;
   height: 5rem;
+}
+
+main {
+  display: flex;
+  /*put most recently added tasks on top*/
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
 }
 
 li {
@@ -32,16 +41,69 @@ h1 {
   z-index: 0;
 }
 
+h2 {
+  margin: 0;
+}
+
 p {
   font-size: 1rem;
   z-index: 0;
+  margin: 0;
 }
 
 
 a:hover {
   color:#b38600;
+}
+.task-entry {
+  width: 75%;
+  margin: auto;
+}
+
+.task-entry fieldset {
+  border-radius: 1rem;
+  border-color: white;
+  border-width: thick;
+  border-style: solid;
+  padding-bottom: 1rem;
+}
+
+.task-entry legend {
+  font-size: 2rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.task-entry label {
+  /*nice and big so it is easy to click into!*/
+  padding: 1rem;
+  display: inline;
+}
+
+.task-entry input{
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: .5rem;
 
 }
+
+.task-entry .add-task {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url( '../images/add.png' );
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: .4;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: .2s ease;
+}
+
+.task-entry .add-task:hover {
+  opacity: 1;
+}
+
+
 
 .task-tile, .cover-tile {
   width: 10rem;
@@ -51,7 +113,6 @@ a:hover {
 .task-tile {
   z-index: 0;
   align-items: center;
-  display: inline-block;
   margin: 4rem;
   border-radius: 1rem;
   border-color: white;
@@ -77,15 +138,7 @@ a:hover {
 }
 
 .cover-tile:hover {
-
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 1;
-}
-
-
-
-label {
-  /*nice and big so it is easy to click into!*/
-  padding: 2.5rem;
 }
