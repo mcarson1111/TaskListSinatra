@@ -1,44 +1,78 @@
 
+<h2>What would you like to do with your tasks?</h2>
 
-<header>
-  <h1> To Do List </h1>
-</header>
+<div class="user-choice">
+  <form action="" method="put">
 
-<nav>
-    <ul>
-      <li><a href='/'>Home</a></li>
-
-      <li><a href='/new-task'>Add a New Task!</a></li>
-    </ul>
-</nav>
+      <label class="mark-complete"><span  class="text">Complete</span><input type="radio"   name="edit_tasks_list"  onclick="this.form.submit()"  value="mark_completed" alt="Mark tasks complete"></label>
 
 
-<main>
-  <!-- <%= params %> -->
 
-  <% tasks_to_do = @task_list_database.all_incomplete_tasks %>
+      <label class="remove-task"><span  class="text">Remove</span><input type="radio"   name="edit_tasks_list"  onclick="this.form.submit()"  value="remove_task" value="remove_task" alt="Remove   tasks"></label>
 
+  </form>
+  <a class="add-task" href='/new-task' alt="Add a new task"><span class="text">Add</span></a>
+</div>
 
-    <% tasks_to_do.each do |task| %>
-      <div>
-        <h2>
-          <%= task[1] %>
-        </h2>
-        <p>
-          <%= task[2] %>
-        </p>
+<div class="list-tasks">
 
-        <form action="" method="post">
-          <!-- <input type="button" onlick = "post" name="completed" value="true">Completed -->
-          <input type="hidden" name=completed[] value="">
-          <input type="hidden" name=completed[] value="<%=task[0]%>">
-          <input type="submit" value = "Completed!">
+<% tasks_to_do = @task_list_database.all_incomplete_tasks %>
+<% @edit_tasks_list = params["edit_tasks_list"] %>
 
-          <!-- <input type="submit" value="Ok"> -->
-        </form>
-      </div>
+<% tasks_to_do.each do |task| %>
+  <div class="to-do task-tile">
+    <% if !@edit_tasks_list.nil? %>
+    <%# when edit_task_list is NOT nil, the user has input if they want to complete or delete so we can give them the buttons! %>
+      <form action="" method="post" class="overlay">
+      <% if @edit_tasks_list == "mark_completed" %>
+          <%# need to associate the id so we know which record  to update -this is in index[0] %>
+          <input type="hidden" name="completed[]" value="<%=  task[0] %>">
+          <%# if a completed button gets checked, we will add   the date/time as part of the post method in   taskapp.rb %>
+          <input class="complete cover-tile" type="submit"  value = "">
+      <% else %>
+        <input type="hidden" name="removed[]" value="<%=  task[0] %>">
+        <input type="hidden" name="removed[]" value="true">
+        <input class="remove cover-tile" type="submit"  value = "">
+
+      <% end %>
+
+    </form>
     <% end %>
 
+    <h3>
+        <%#Task Title%>
+      <%= task[1] %>
+    </h3>
 
+    <p>
+        <%#Task Description%>
+      <%= task[2] %>
+    </p>
 
-</main>
+  </div>
+<% end %>
+</div>
+
+<h2 class="done">Great job! You've finished these tasks: </h2>
+
+<div class="done list-tasks">
+<% complete_tasks = @task_list_database.all_complete_tasks %>
+
+<% complete_tasks.each do |task| %>
+  <div class="task-tile">
+      <div action="" method="post" class="overlay already-complete cover-tile">
+      </div>
+
+    <h4>
+        <%#Task Title%>
+      <%= task[1] %>
+    </h4>
+
+    <p>
+        <%#Task Description%>
+      <%= task[2] %>
+    </p>
+
+  </div>
+<% end %>
+</div>

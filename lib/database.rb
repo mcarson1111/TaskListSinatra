@@ -16,7 +16,8 @@ module TaskList
           title TEXT NOT NULL,
           description TEXT,
           added_at TEXT,
-          completed_at TEXT
+          completed_at TEXT,
+          removed TEXT
         );
       CREATESTATEMENT
 
@@ -33,9 +34,9 @@ module TaskList
 
       insert_statement = <<-INSERTSTATEMENT
         INSERT INTO task_list (
-          title, description, added_at, completed_at
+          title, description, added_at, completed_at, removed
         ) VALUES (
-          :title, :description, :added_at, :completed_at
+          :title, :description, :added_at, :completed_at, :removed
           );
       INSERTSTATEMENT
 
@@ -47,7 +48,8 @@ module TaskList
     def all_tasks
       query = <<-QUERY
         SELECT *
-        FROM task_list;
+        FROM task_list
+        WHERE removed != "true";
       QUERY
 
       all_tasks = db.execute(query)
@@ -55,31 +57,55 @@ module TaskList
     end
 
     def all_incomplete_tasks
+      # before a task is complete, it does NOT have a time stamp.  So, look for taks where complete = ""
+
       query = <<-QUERY
         SELECT *
         FROM task_list
-        WHERE completed_at = "";
+        WHERE completed_at = ""
+        AND removed != "true";
       QUERY
 
       all_incomplete_tasks = db.execute(query)
 
     end
 
-    def update_completion_time(completed, task_id)
+    def all_complete_tasks
+      # look for taks where complete != ""
+
+      query = <<-QUERY
+        SELECT *
+        FROM task_list
+        WHERE completed_at != ""
+        AND removed != "true";
+      QUERY
+
+      all_complete_tasks = db.execute(query)
+
+    end
+
+    def update_completion_time(task_id, completed_time)
       query = <<-QUERY
         UPDATE task_list
         SET completed_at = ?
         WHERE id = ?;
       QUERY
 
-      db.execute(query, completed, task_id)
+      db.execute(query, completed_time, task_id)
+
+    end
+
+    def remove_task(task_id, removed)
+      query = <<-QUERY
+        UPDATE task_list
+        SET removed = ?
+        WHERE id = ?;
+      QUERY
+
+      db.execute(query, removed, task_id)
 
     end
 
   end
 
 end
-
-# new_task = TaskList::Task.new
-#
-# new_task.insert!({"title" => "Clean house", "description"=> "Clean the house" , "added_at"=> "2016", "completed_at"=> ""})

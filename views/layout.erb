@@ -3,13 +3,25 @@
   <head>
     <title>Task List</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css"
-    href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
   </head>
 
   <body>
+    <header>
+      <h1> TO DO LIST </h1>
+    </header>
 
-  <%=yield%>
+    <main>
+      <%# in main so nav can use flex styling %>
+      <div class="navigation">
+        <nav>
+          <a href='/'>Home</a>
+          <a href='/new-task'>New Task!</a>
+        </nav>
+      </div>
+      <%=yield%>
+
+    </main>
 
   </body>
 
